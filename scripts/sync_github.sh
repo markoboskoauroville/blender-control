@@ -13,7 +13,7 @@ fi
 
 git add -A
 if ! git diff --cached --quiet; then
-  git commit -m "$MSG"
+  SKIP_AUTO_PUSH=1 git commit -m "$MSG"
 fi
 
 git push -u origin main
