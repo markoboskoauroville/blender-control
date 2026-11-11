@@ -1,0 +1,70 @@
+{
+  "schema_version": "antigravity.handover/v1",
+  "project": "BLENDER_CONTROL",
+  "repository": "https://github.com/markoboskoauroville/blender-control",
+  "closed_at": "2026-11-11T21:45:00+01:00",
+  "status": "CLOSED_WITH_CLEAN_HANDOVER",
+  "completed_milestones": [
+    {
+      "id": "M1_BLENDER_5_2_SKILL_AND_LIVE_BRIDGE",
+      "status": "DONE",
+      "summary": "Built TCP JSON-RPC live GUI bridge (127.0.0.1:9876) on Blender 5.2.1 LTS main UI thread + headless CLI client + 5.2 API reference guide + # filename placeholder fix."
+    },
+    {
+      "id": "M2_THREE_SHOWCASE_PROJECTS",
+      "status": "DONE",
+      "summary": "Built and rendered 01_glass_metal_sculpture (Cycles Metal GPU), 02_parametric_cyber_grid (EEVEE bmesh wave), and 03_straight_line_mechanism (120-frame hypocycloid MP4)."
+    },
+    {
+      "id": "M3_PROJECT_04_V1_AND_V2_CALIBRATION",
+      "status": "V1_RENDERED_V2_CALIBRATED",
+      "summary": "Decoded 393-frame AV1 source video via Blender 5.2 VSE, delivered V1 edit, performed full 400%-zoom autopsy of V1 issues, and measured exact subpixel kinematics/camera segments for zero-flicker V2."
+    }
+  ],
+  "calibrated_video_04_parameters": {
+    "resolution": [720, 1280],
+    "fps": 30,
+    "frame_count": 393,
+    "duration_seconds": 13.1,
+    "audio_codec": "aac_44100hz_stereo",
+    "studio_floor_rgb": [146, 146, 146],
+    "camera_segments": {
+      "isometric_static": {
+        "frames": [1, 182],
+        "rail_edge_std_px": 0.0314,
+        "crank_motion": "1 full 360-deg revolution at 2.00 deg/frame (MAD f1 vs f182 = 0.405/255)"
+      },
+      "camera_orbit_transition": {
+        "frames": [183, 212],
+        "crank_motion": "PAUSED at 0 deg along rail while camera orbits to top-down"
+      },
+      "topdown_static": {
+        "frames": [213, 393],
+        "rail_edge_std_px": 0.0224,
+        "crank_motion": "1 full 360-deg revolution in 180 frames at 2.00 deg/frame (MAD f213 vs f393 = 0.374/255)"
+      }
+    },
+    "static_joint_anchors_px": {
+      "isometric_back_bolt": { "cx": 114.5, "cy": 480.5, "rx": 25.0, "ry": 13.3, "dh_cyl": 15.0 },
+      "topdown_back_bolt": { "cx": 392.5, "cy": 363.0, "rx": 29.8, "ry": 29.8, "dh_cyl": 2.5 },
+      "topdown_crank_circle": { "cx": 393.74, "cy": 365.04, "radius_px": 174.98, "rod_length_px": 437.57, "rod_width_px": 58.56 }
+    }
+  },
+  "next_session_queue": [
+    {
+      "step": 1,
+      "id": "RENDER_AND_VERIFY_V2_VIDEO",
+      "description": "Implement projects/04_how_rotation_becomes/process_frames_v2.py following .agents/skills/video-frame-precise-edit/SKILL.md: keep all 3 black joint assemblies black, multiply matte-vs-glossy reflections (including coral->blue reflection in front glossy spacer), use static silhouette mattes + time-invariant 'B. Cruz' albedo unmixing across all 393 frames + TPDF dither, render How_Rotation_Becomes_a_Straight_Line_V2.mp4 + replace root #mechanism.mp4, and iterate frame-by-frame until 100% blended."
+    },
+    {
+      "step": 2,
+      "id": "SEND_WHATSAPP_SELF_VIDEO_FIREFOX",
+      "description": "Use /Users/markobosko/Developer/FIREFOX_CONTROL/firefoxctl WebDriver BiDi to send How_Rotation_Becomes_a_Straight_Line_V2.mp4 strictly from Marko to Marko ('(You)', +385 97 679 0768) in WhatsApp Web."
+    },
+    {
+      "step": 3,
+      "id": "DEPLOY_CLOUD_VIDEO_PROMPT_STUDIO",
+      "description": "Provision and deploy manifests/cloud-video-studio-manifest.yaml on GCP Billing Account 0193A0-F5144A-C98D4D ($285.00 hard safety cap, europe-west1, Cloud Run + Vertex AI Gemini + Headless Blender/FFmpeg) and verify end-to-end with original_reference.mp4 + changes.txt."
+    }
+  ]
+}

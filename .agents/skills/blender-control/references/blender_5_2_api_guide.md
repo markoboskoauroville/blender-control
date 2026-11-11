@@ -121,6 +121,8 @@ scene.render.filepath = "/abs/path/to/animation.mp4"
 bpy.ops.render.render(animation=True)
 ```
 
+> **Gotcha (`#` in Filenames)**: Blender interprets `#` in `scene.render.filepath` as a frame-number placeholder (e.g. turning `#mechanism.mp4` into `1-393mechanism.mp4`). Always render to a `#`-free path first and `os.replace()` into target filenames containing `#` (`blender_control_bridge.py` handles this automatically).
+
 ---
 
 ## 5. Compositor in Blender 5.2

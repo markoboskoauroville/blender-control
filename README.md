@@ -62,25 +62,49 @@ python3 .agents/skills/blender-control/scripts/blender_cli.py render-anim projec
 
 - **Animation Video**: [`projects/03_straight_line_mechanism/animation.mp4`](./projects/03_straight_line_mechanism/animation.mp4)
 
+### 4. Slider-Crank Video Edit & Blender VSE Render (`projects/04_how_rotation_becomes/`)
+- **Source**: `How Rotation Becomes a Straight Line ⚙️#engineering #technology #mechanism.mp4` (`720x1280` @ `30 FPS`, `393` frames + `AAC` stereo audio) and [`changes.txt`](./changes.txt).
+- **Applied Changes**:
+  1. Seamlessly removed the white `B. Cruz` text across all `393` frames (including partial rod/slider occlusions, cast shadows, and camera rotation) using a 2D discrete Laplace harmonic surface solver.
+  2. Replaced the salmon-pink/coral (`ružičasto`) connecting rod & collar with rich CAD Royal Blue (`plavo`) via constant-luma `YCrCb` chroma rotation.
+  3. Replaced the black (`crno`) guide rail & socket bolts/pins with 3D-shaded CAD Green (`zeleno`), keeping the grey studio floor, soft shadows, yellow crank, and teal slider 100% identical frame-by-frame.
+- **Outputs & Verification**:
+  - Replaced in-place video + second copy: [`How_Rotation_Becomes_a_Straight_Line_Modified.mp4`](./How_Rotation_Becomes_a_Straight_Line_Modified.mp4)
+  - Side-by-side 393-frame verification sheet:
+
+![Project 04 Verification Grid](./projects/04_how_rotation_becomes/verification_grid.png)
+
 ---
 
 ## Repository Structure
 
 ```text
 .
-├── .agents/skills/blender-control/
-│   ├── SKILL.md                           # Main Antigravity skill instructions
-│   ├── references/
-│   │   └── blender_5_2_api_guide.md       # Blender 5.2 LTS Python 3.13 API reference
-│   └── scripts/
-│       ├── blender_cli.py                 # TCP JSON-RPC client & headless runner
-│       ├── blender_control_bridge.py      # Blender main-thread startup server (127.0.0.1:9876)
-│       └── install_bridge.sh              # Bridge installer & live GUI connector
+├── .agents/skills/
+│   ├── blender-control/
+│   │   ├── SKILL.md                       # Live Blender 5.2 GUI + headless CLI skill
+│   │   ├── references/
+│   │   │   └── blender_5_2_api_guide.md   # Blender 5.2 LTS Python 3.13 API reference
+│   │   └── scripts/
+│   │       ├── blender_cli.py             # TCP JSON-RPC client & headless runner
+│   │       ├── blender_control_bridge.py  # Blender main-thread startup server (127.0.0.1:9876)
+│   │       └── install_bridge.sh          # Bridge installer & live GUI connector
+│   └── video-frame-precise-edit/
+│       └── SKILL.md                       # Zero-flicker, zero-banding surgical 3D video editing skill
+├── manifests/
+│   ├── project-manifest.yaml              # Project, skill, and V2 render specification
+│   ├── cloud-video-studio-manifest.yaml   # GCP Cloud Run + Vertex AI video-prompt studio manifest
+│   └── handover-checkpoint.json           # Machine-readable state & 393-frame kinematic calibration
 ├── projects/
 │   ├── 01_glass_metal_sculpture/          # Cycles Metal GPU glass & gold sculpture
 │   ├── 02_parametric_cyber_grid/          # Procedural bmesh hexagonal wave matrix
-│   └── 03_straight_line_mechanism/        # Animated hypocycloid straight-line mechanism
+│   ├── 03_straight_line_mechanism/        # Animated hypocycloid straight-line mechanism
+│   └── 04_how_rotation_becomes/           # 393-frame slider-crank video edit & verification
 ├── scripts/
+│   ├── install_git_hooks.sh               # Auto-push post-commit hook installer
 │   └── sync_github.sh                     # One-command pull/commit/push GitHub sync
-└── AGENTS.md                              # Always-on workspace rules
+├── AGENTS.md                              # Always-on workspace rules & safety guardrails
+├── HANDOVER.md                            # Quick handover index
+├── LESSONS.md                             # Engineering lessons, Blender 5.2 gotchas & V1->V2 autopsy
+└── TAKEOVER.md                            # Complete state & next-session resumption guide
 ```

@@ -274,9 +274,14 @@ def _handle_command_main_thread(req: dict) -> dict:
             scene.render.image_settings.file_format = "PNG"
             scene.render.use_file_extension = True
 
-        scene.render.filepath = output_path
+        # Blender treats '#' in scene.render.filepath as frame-number padding!
+        # Render to a '#' free temp path if needed, then move atomically to output_path.
+        safe_path = output_path.replace("#", "_HASH_") if "#" in os.path.basename(output_path) else output_path
+        scene.render.filepath = safe_path
         t0 = time.time()
         bpy.ops.render.render(animation=True)
+        if safe_path != output_path and os.path.isfile(safe_path):
+            os.replace(safe_path, output_path)
         elapsed = round(time.time() - t0, 3)
         _redraw_viewports()
         return {

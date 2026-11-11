@@ -1,0 +1,100 @@
+apiVersion: antigravity.blender/v1
+kind: ProjectHandoverManifest
+metadata:
+  name: blender-control
+  repository: https://github.com/markoboskoauroville/blender-control
+  branch: main
+  version: "1.1.0"
+  closed_at: "2026-11-11T21:45:00+01:00"
+  host: MacBook-Pro.local
+  hardware: Apple M1 Pro (16-Core Metal GPU)
+  blender_version: "5.2.1 LTS"
+  python_version: "3.13.13"
+  status: HANDOVER_READY
+
+skills:
+  - name: blender-control
+    path: .agents/skills/blender-control/SKILL.md
+    api_reference: .agents/skills/blender-control/references/blender_5_2_api_guide.md
+    scripts:
+      bridge_daemon: .agents/skills/blender-control/scripts/blender_control_bridge.py
+      installed_startup_script: ~/Library/Application Support/Blender/5.2/scripts/startup/blender_control_bridge.py
+      cli_client: .agents/skills/blender-control/scripts/blender_cli.py
+      installer: .agents/skills/blender-control/scripts/install_bridge.sh
+    endpoint: tcp://127.0.0.1:9876
+    status: COMPLETED_AND_VERIFIED
+
+  - name: video-frame-precise-edit
+    path: .agents/skills/video-frame-precise-edit/SKILL.md
+    description: >-
+      Zero-flicker, zero-banding, frame-aligned 3D video surgical editing,
+      time-invariant surface text unmixing, 3D kinematic black-hardware preservation,
+      multiplied PBR reflections, and Blender 5.2 VSE/Cycles compositing.
+    status: COMPLETED_AND_DOCUMENTED
+
+projects:
+  - id: 01_glass_metal_sculpture
+    path: projects/01_glass_metal_sculpture
+    engine: CYCLES (Metal GPU, 64 samples, AgX)
+    outputs:
+      - projects/01_glass_metal_sculpture/scene.blend
+      - projects/01_glass_metal_sculpture/render.png
+    status: COMPLETED
+
+  - id: 02_parametric_cyber_grid
+    path: projects/02_parametric_cyber_grid
+    engine: BLENDER_EEVEE (1600x1000, AgX)
+    outputs:
+      - projects/02_parametric_cyber_grid/scene.blend
+      - projects/02_parametric_cyber_grid/render.png
+    status: COMPLETED
+
+  - id: 03_straight_line_mechanism
+    path: projects/03_straight_line_mechanism
+    engine: BLENDER_EEVEE + CYCLES (120-frame hypocycloid loop @ 30 FPS)
+    outputs:
+      - projects/03_straight_line_mechanism/scene.blend
+      - projects/03_straight_line_mechanism/render.png
+      - projects/03_straight_line_mechanism/animation.mp4
+    status: COMPLETED
+
+  - id: 04_how_rotation_becomes
+    path: projects/04_how_rotation_becomes
+    source_backup: projects/04_how_rotation_becomes/original_reference.mp4
+    prompt_file: changes.txt
+    prompt_decoded: "Možeš li u ovom videu izbrisati tekst i zamjeniti crno u zelno i ružičasto u plavo"
+    v1_outputs:
+      - "How Rotation Becomes a Straight Line ⚙️#engineering #technology #mechanism.mp4"
+      - How_Rotation_Becomes_a_Straight_Line_Modified.mp4
+      - projects/04_how_rotation_becomes/verification_grid.png
+    v2_pending_requirements:
+      output_filename: How_Rotation_Becomes_a_Straight_Line_V2.mp4
+      replace_in_place: "How Rotation Becomes a Straight Line ⚙️#engineering #technology #mechanism.mp4"
+      must_keep_black_hardware:
+        - Back 6-lobe socket-head cap screw
+        - Middle chamfered flat black cap, cylindrical spacer, and bottom nut
+        - Front 6-lobe socket-head cap screw and mirror-glossy cylindrical spacer
+      quality_mandates:
+        - Zero edge or surface flickering across all 393 frames (time-locked static silhouette mattes)
+        - Zero 8-bit color banding (float32 processing + TPDF dither + Blender dither_intensity=1.5)
+        - 100% 'B. Cruz' removal across all 393 frames including camera orbit f=183..212
+        - Multiplied matte-vs-reflective contrast (satin bevel rims + mirror-glossy front spacer reflecting blue collar & mint slider)
+        - Frame-by-frame comparison against original_reference.mp4 until 100% seamless blending
+    status: V1_COMPLETE_V2_CALIBRATED_READY_TO_RENDER
+
+pending_integrations:
+  whatsapp_self_notification:
+    status: PENDING_AFTER_V2_RENDER
+    browser_controller: /Users/markobosko/Developer/FIREFOX_CONTROL/firefoxctl
+    reference_script: /Users/markobosko/Developer/ELEVATE_MEDIA_MONITOR/tools/whatsapp_self.py
+    strict_recipient_rule: "ONLY Marko's own '(You)' self-chat (+385 97 679 0768) via Firefox WebDriver BiDi; attach V2 MP4 + completion message."
+
+  cloud_video_prompt_studio:
+    status: SPECIFIED_READY_TO_PROVISION
+    manifest: manifests/cloud-video-studio-manifest.yaml
+    organization_id: "87869539786"
+    billing_account_id: "0193A0-F5144A-C98D4D"
+    available_credit_usd: 299.97
+    hard_cap_usd: 285.00
+    credit_expiry: "2026-12-03"
+    sister_offload_workspace: /Users/markobosko/Developer/ANTIGRAVITY_OFFLOAD_TO_CLOUD
