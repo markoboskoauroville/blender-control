@@ -1,0 +1,17 @@
+# macOS
+.DS_Store
+
+# Blender backup & autosave files
+*.blend1
+*.blend2
+*.blend@
+
+# Python cache
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+
+# Temporary render frames (keep final renders & showcase MP4/PNGs)
+projects/*/frames/
+/tmp_*/
